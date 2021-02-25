@@ -7,8 +7,7 @@ public class MatchInformation {
   private int goalsHome;
   private int goalsGuest;
 
-  public MatchInformation(long id, String teamHouse, String teamGuest, int goalsHouse, int goalsGuest) {
-	this.id = id;
+  public MatchInformation(String teamHouse, String teamGuest, int goalsHouse, int goalsGuest) {
 	this.teamHome = teamHouse;
 	this.teamGuest = teamGuest;
 	this.goalsHome = goalsHouse;

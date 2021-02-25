@@ -95,4 +95,35 @@
             android:singleLine="true" />
   </com.google.android.material.textfield.TextInputLayout>
 
+  <Button
+          android:text="@string/buttonAddText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/addButton"
+          app:layout_constraintTop_toBottomOf="@+id/ownerCommandNameLayout"
+          app:layout_constraintStart_toStartOf="parent"
+          android:layout_marginTop="120dp"
+          android:layout_marginStart="32dp"
+          app:layout_constraintEnd_toStartOf="@+id/clearDBButton" />
+
+  <Button
+          android:text="@string/buttonClearText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/clearDBButton"
+          app:layout_constraintTop_toBottomOf="@+id/ownerCommandNameLayout"
+          android:layout_marginTop="120dp"
+          app:layout_constraintStart_toEndOf="@+id/addButton"
+          app:layout_constraintEnd_toStartOf="@+id/viewDBButton" />
+
+  <Button
+          android:text="@string/buttonViewDBText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/viewDBButton"
+          app:layout_constraintTop_toBottomOf="@+id/ownerCommandNameLayout"
+          android:layout_marginTop="120dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:layout_marginEnd="32dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

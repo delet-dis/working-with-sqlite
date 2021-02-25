@@ -15,16 +15,16 @@ public class DatabaseHelper {
   private static final String TABLE_NAME = "tableMatches";
   private static final String COLUMN_ID = "id";
 
-  private static final String COLUMN_TEAMHOME = "TeamНоme";
-  private static final String COLUMN_TEAMGUEST = "TeamGuest";
-  private static final String COLUMN_GOALSHOME = "GoalsHome";
-  private static final String COLUMN_GOALSGUEST = "GoalsGuast";
+  private static final String COLUMN_TEAM_HOME = "TeamНоme";
+  private static final String COLUMN_TEAM_GUEST = "TeamGuest";
+  private static final String COLUMN_GOALS_HOME = "GoalsHome";
+  private static final String COLUMN_GOALS_GUEST = "GoalsGuast";
   private static final int NUM_COLUMN_ID = 0;
 
-  private static final int NUM_COLUMN_TEAMHOME = 1;
-  private static final int NUM_COLUMN_TEAMGUEST = 2;
-  private static final int NUM_COLUMN_GOALSHOME = 3;
-  private static final int NUM_COLUMN_GOALSGUEST = 4;
+  private static final int NUM_COLUMN_TEAM_HOME = 1;
+  private static final int NUM_COLUMN_TEAM_GUEST = 2;
+  private static final int NUM_COLUMN_GOALS_HOME = 3;
+  private static final int NUM_COLUMN_GOALS_GUEST = 4;
 
   private SQLiteDatabase mDataBase;
 
@@ -35,10 +35,10 @@ public class DatabaseHelper {
 
   public void insert(MatchInformation matchInformation) {
 	String query = "INSERT INTO " + TABLE_NAME +
-			" (" + COLUMN_TEAMHOME + "," +
-			COLUMN_TEAMGUEST + "," +
-			COLUMN_GOALSHOME + "," +
-			COLUMN_GOALSGUEST + ") " +
+			" (" + COLUMN_TEAM_HOME + "," +
+			COLUMN_TEAM_GUEST + "," +
+			COLUMN_GOALS_HOME + "," +
+			COLUMN_GOALS_GUEST + ") " +
 			"VALUES " + "(" +
 			"\"" + matchInformation.getTeamHome() + "\"" + "," +
 			"\"" + matchInformation.getTeamGuest() + "\"" + "," +
@@ -48,6 +48,9 @@ public class DatabaseHelper {
 	mDataBase.execSQL(query);
   }
 
+  public void deleteAll() {
+	mDataBase.delete(TABLE_NAME, null, null);
+  }
 
   public ArrayList<MatchInformation> selectAll() {
 	Cursor mCursor = mDataBase.query(TABLE_NAME, null, null, null, null, null, null);
@@ -57,11 +60,11 @@ public class DatabaseHelper {
 	if (!mCursor.isAfterLast()) {
 	  do {
 		long id = mCursor.getLong(NUM_COLUMN_ID);
-		String TeamHome = mCursor.getString(NUM_COLUMN_TEAMHOME);
-		String TeamGuest = mCursor.getString(NUM_COLUMN_TEAMGUEST);
-		int GoalsHome = mCursor.getInt(NUM_COLUMN_GOALSHOME);
-		int GoalsGuest=mCursor.getInt(NUM_COLUMN_GOALSGUEST);
-		arr.add(new MatchInformation(id, TeamHome, TeamGuest, GoalsHome,GoalsGuest));
+		String TeamHome = mCursor.getString(NUM_COLUMN_TEAM_HOME);
+		String TeamGuest = mCursor.getString(NUM_COLUMN_TEAM_GUEST);
+		int GoalsHome = mCursor.getInt(NUM_COLUMN_GOALS_HOME);
+		int GoalsGuest=mCursor.getInt(NUM_COLUMN_GOALS_GUEST);
+		arr.add(new MatchInformation(TeamHome, TeamGuest, GoalsHome,GoalsGuest));
 	  } while (mCursor.moveToNext());
 	}
 	return arr;
@@ -78,10 +81,10 @@ public class DatabaseHelper {
 	public void onCreate(SQLiteDatabase db) {
 	  String query = "CREATE TABLE " + TABLE_NAME + " (" +
 			  COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-			  COLUMN_TEAMHOME + " TEXT, " +
-			  COLUMN_TEAMGUEST + " TEXT, " +
-			  COLUMN_GOALSHOME + " INT," +
-			  COLUMN_GOALSGUEST + " INT);";
+			  COLUMN_TEAM_HOME + " TEXT, " +
+			  COLUMN_TEAM_GUEST + " TEXT, " +
+			  COLUMN_GOALS_HOME + " INT," +
+			  COLUMN_GOALS_GUEST + " INT);";
 	  db.execSQL(query);
 	}
 

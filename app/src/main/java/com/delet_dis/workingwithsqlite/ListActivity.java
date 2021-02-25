@@ -1,24 +1,42 @@
 package com.delet_dis.workingwithsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class ListActivity extends AppCompatActivity {
+
+  private ListAdapter listAdapter;
+
+  private RecyclerView goalsRecyclerView;
+
+  private DatabaseHelper databaseHelper;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_list);
+	goalsRecyclerView = findViewById(R.id.goalsRecyclerView);
 
-	DatabaseHelper databaseHelper = new DatabaseHelper(this);
-	MatchInformation matchInformation = new MatchInformation(1, "Bears", "Lions", 2, 5);
-	databaseHelper.insert(matchInformation);
+	databaseHelper = new DatabaseHelper(this);
 
-	ArrayList<MatchInformation> list = databaseHelper.selectAll();
-	Log.d("", "");
+	listAdapter = new ListAdapter();
+
+	loadGoals();
+
+	goalsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+	goalsRecyclerView.setAdapter(listAdapter);
+  }
+
+
+  private void loadGoals() {
+	Collection<MatchInformation> matchesInformation = databaseHelper.selectAll();
+	listAdapter.setItems(matchesInformation);
+
   }
 }

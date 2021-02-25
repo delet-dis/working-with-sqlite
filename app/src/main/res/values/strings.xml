@@ -3,4 +3,9 @@
   <string name="guestCommandName">Guest command name</string>
   <string name="ownerCommandName">Owner command name</string>
   <string name="score">Score</string>
+  <string name="buttonAddText">Add</string>
+  <string name="buttonViewDBText">View DB</string>
+  <string name="buttonClearText">Clear DB</string>
+  <string name="emptyFieldError">The field must not be empty</string>
+  <string name="emptyFieldErrorAsStar">*</string>
 </resources>
